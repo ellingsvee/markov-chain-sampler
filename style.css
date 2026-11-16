@@ -90,8 +90,10 @@ button {
     color: inherit;
 }
 
+/* Every text button is the same size, wherever it sits. */
 button.link,
 label.link {
+    font-size: 0.9rem;
     background: none;
     border: 0;
     cursor: pointer;
@@ -105,7 +107,6 @@ button.link:disabled {
 }
 
 .play {
-    font-size: 1.1em;
     min-width: 7.5em;
     text-align: left;
 }
@@ -324,7 +325,6 @@ body.dragging-cell {
 }
 
 .row-actions .link {
-    font-size: 0.85em;
     margin-left: 6px;
 }
 
