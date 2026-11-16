@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markov Chain Sampler</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        // Show why the app failed to start instead of a stuck "[loading…]".
+        function bootError(msg) {
+            const el = document.getElementById('bootError');
+            if (el && document.getElementById('play').disabled) el.textContent = msg;
+        }
+        addEventListener('error', (e) => bootError(`error: ${e.message}`));
+        addEventListener('unhandledrejection', (e) => bootError(`error: ${e.reason?.message ?? e.reason}`));
+        addEventListener('DOMContentLoaded', () => {
+            if (location.protocol === 'file:') bootError('open this page through a local server: run python3 serve.py and go to http://localhost:8000');
+        });
+    </script>
+    <script type="module" src="js/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Markov Chain Sampler</h1>
+            <p class="subtitle">A drum machine where every sample is a state of a Markov chain.
+                <a class="small" href="README.md">readme</a></p>
+        </header>
+
+        <main>
+            <hr>
+            <section id="chain">
+                <h2>Chain</h2>
+                <div class="bar-row">
+                    <button id="play" class="link play" disabled>[loading…]</button>
+                    <button class="link small" id="relayout">reset layout</button>
+                </div>
+                <p id="bootError" class="error"></p>
+                <div id="graph"></div>
+            </section>
+
+            <hr>
+            <section id="transport">
+                <h2>Transport</h2>
+                <div class="rows">
+                    <span class="key">mode</span>
+                    <span>
+                        <label><input type="radio" name="mode" value="free"> free</label>
+                        <label><input type="radio" name="mode" value="grid"> grid</label>
+                    </span>
+                    <span class="key grid-only">tempo</span>
+                    <label class="grid-only"><input id="bpm" type="number" min="40" max="300" step="1"> bpm</label>
+                    <span class="key">rate ×</span>
+                    <label><input id="rateScale" type="range" min="-2" max="2" step="0.01"> <span id="rateScaleOut" class="num"></span></label>
+                    <span class="key">walkers</span>
+                    <label><input id="walkers" type="number" min="1" max="8" step="1"></label>
+                    <span class="key">volume</span>
+                    <label><input id="volume" type="range" min="0" max="1" step="0.01"></label>
+                </div>
+            </section>
+
+            <hr>
+            <section id="transitions">
+                <h2>Transitions</h2>
+                <div id="matrix" class="scroll"></div>
+            </section>
+
+            <hr>
+            <section id="samples">
+                <h2>Samples</h2>
+                <div id="sampleList" class="scroll"></div>
+                <p>
+                    <label class="link">[+ add samples]<input id="upload" type="file" accept="audio/*" multiple hidden></label>
+                    &nbsp;
+                    <button class="link" id="resetKit">[reset to 808 kit]</button>
+                </p>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>

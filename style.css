@@ -1,0 +1,365 @@
+/* Base styles follow ellingsvee.github.io */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --text: #212529;
+    --muted: #666;
+    --faint: #888;
+    --link: #0066cc;
+    --link-hover: #003366;
+    --line: #e6e6e6;
+    --bg: #fff;
+    --graph: #c8c8c8;
+    --walker: #000;
+}
+
+body {
+    font-family: 'Lucida Console', monospace;
+    line-height: 1.4;
+    font-size: 16px;
+    color: var(--text);
+    background: var(--bg);
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+header {
+    margin-bottom: 30px;
+}
+
+.subtitle {
+    font-size: 1.1em;
+    color: var(--muted);
+    margin-bottom: 0;
+}
+
+main {
+    margin-bottom: 40px;
+}
+
+section {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+h1 {
+    font-weight: bold;
+    font-size: 2.5em;
+}
+
+h2 {
+    font-weight: bold;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+
+p {
+    margin-bottom: 15px;
+}
+
+a,
+.link {
+    color: var(--link);
+    text-decoration: underline;
+}
+
+a:hover,
+.link:hover {
+    color: var(--link-hover);
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid var(--line);
+}
+
+/* App */
+
+input,
+select,
+button {
+    font: inherit;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+button.link,
+label.link {
+    background: none;
+    border: 0;
+    cursor: pointer;
+    padding: 0;
+}
+
+button.link:disabled {
+    color: var(--faint);
+    cursor: default;
+    text-decoration: none;
+}
+
+.play {
+    font-size: 1.1em;
+    min-width: 7.5em;
+    text-align: left;
+}
+
+input[type="number"],
+input[type="text"],
+select {
+    border: 1px solid var(--line);
+    background: var(--bg);
+    padding: 1px 3px;
+}
+
+input[type="number"] {
+    width: 4.5em;
+}
+
+input[type="range"] {
+    vertical-align: middle;
+    width: 110px;
+    accent-color: var(--text);
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    accent-color: var(--text);
+    vertical-align: -1px;
+}
+
+.small {
+    font-size: 0.85em;
+}
+
+.bar-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 10px;
+}
+
+.rows {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    align-items: center;
+    gap: 10px 24px;
+}
+
+.rows .key {
+    color: var(--muted);
+}
+
+.rows label + label {
+    margin-left: 12px;
+}
+
+.grid-off .grid-only {
+    color: var(--faint);
+}
+
+.muted {
+    color: var(--muted);
+}
+
+.num {
+    display: inline-block;
+    min-width: 3.5em;
+}
+
+.scroll {
+    overflow-x: auto;
+    margin-bottom: 15px;
+}
+
+/* Graph */
+
+#graph {
+    border: 1px solid var(--line);
+    margin-bottom: 10px;
+}
+
+svg.graph {
+    display: block;
+    width: 100%;
+    height: auto;
+    user-select: none;
+    touch-action: none;
+}
+
+.edge {
+    fill: none;
+    stroke: var(--graph);
+    pointer-events: none;
+}
+
+.edge-hit {
+    fill: none;
+    stroke: transparent;
+    stroke-width: 12;
+    cursor: pointer;
+}
+
+.edge-hit:hover + .edge {
+    stroke: var(--faint);
+}
+
+.arrowhead {
+    fill: var(--graph);
+}
+
+.node {
+    cursor: grab;
+}
+
+.node circle {
+    fill: var(--bg);
+    stroke: var(--graph);
+    stroke-width: 1.5;
+}
+
+.node.active circle {
+    stroke: var(--walker);
+}
+
+.node text {
+    font-family: 'Lucida Console', monospace;
+    font-size: 11px;
+    fill: var(--muted);
+    pointer-events: none;
+}
+
+.walker {
+    pointer-events: none;
+}
+
+.walker circle {
+    fill: var(--walker);
+}
+
+.walker text {
+    display: none;
+    font-family: 'Lucida Console', monospace;
+    font-size: 9px;
+    fill: var(--bg);
+}
+
+.walkers.labelled .walker text,
+.labelled .walker text {
+    display: inline;
+}
+
+.graph-empty {
+    font-family: 'Lucida Console', monospace;
+    font-size: 14px;
+    fill: var(--faint);
+}
+
+/* Tables */
+
+table {
+    border-collapse: collapse;
+    font-size: 0.85em;
+}
+
+th,
+td {
+    padding: 2px 6px;
+    text-align: right;
+    white-space: nowrap;
+}
+
+th {
+    font-weight: normal;
+    color: var(--muted);
+}
+
+thead th {
+    border-bottom: 1px solid var(--line);
+}
+
+tbody th {
+    text-align: left;
+}
+
+th.corner {
+    color: var(--faint);
+    text-align: left;
+}
+
+.matrix td input {
+    width: 4em;
+    border-color: transparent;
+    background: transparent;
+    text-align: right;
+}
+
+.matrix td input {
+    cursor: ns-resize;
+    -moz-appearance: textfield;
+}
+
+.matrix td input::-webkit-inner-spin-button,
+.matrix td input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+body.dragging-cell {
+    cursor: ns-resize;
+    user-select: none;
+}
+
+.matrix td input:focus {
+    cursor: text;
+    border-color: var(--faint);
+    background: var(--bg);
+    outline: none;
+}
+
+.row-actions .link {
+    font-size: 0.85em;
+    margin-left: 6px;
+}
+
+.samples td {
+    text-align: left;
+}
+
+.samples input[type="text"] {
+    width: 8em;
+}
+
+body.dropping {
+    outline: 2px dashed var(--faint);
+    outline-offset: -8px;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 20px 15px;
+    }
+
+    header h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+}
+
+.error {
+    color: #b05050;
+    font-size: 0.85em;
+}
+
+.error:empty {
+    display: none;
+}
